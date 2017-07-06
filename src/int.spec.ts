@@ -44,6 +44,7 @@ describe('addInt', () => {
 
 function randomInt() {
   const isNegative = Math.random() > 0.5
-  const value = (isNegative ? -1 : 1) * Math.floor(Math.random() * 100000)
+  const pub = Math.floor(Math.random() * 8)
+  const value = (isNegative ? -1 : 1) * Math.floor(Math.random() * Math.pow(10, pub))
   return value
 }

@@ -39,7 +39,7 @@ describe('addFloat', () => {
 
     arr.forEach((item) => {
       expect(addFloat(item[0], item[1])).toBe(
-        (+item[0] * 1000 + +item[1] * 1000 as any).toFixed(0) / 1000 + ''
+        (+item[0] * Math.pow(10, 8) + +item[1] * Math.pow(10, 8) as any).toFixed(0) / Math.pow(10, 8) + ''
       )
     })
   })
@@ -47,6 +47,7 @@ describe('addFloat', () => {
 
 function randomFloat() {
   const isNegative = Math.random() > 0.5
+  const pub = Math.floor(Math.random() * 8)
   const value = Math.random() * 100000
-  return (isNegative ? '-' : '') + value.toFixed(3)
+  return (isNegative ? '-' : '') + value.toFixed(pub)
 }
