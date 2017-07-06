@@ -1,0 +1,9 @@
+.DS_Store
+
+__tests__/
+coverage/
+src/
+.circleci/
+webpack.*.js
+
+package-lock.json
