@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
-const BabiliPlugin = require("babili-webpack-plugin")
+const BabiliPlugin = require('babili-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
