@@ -15,6 +15,8 @@ describe('addInt', () => {
 
     expect(addInt('40', '92')).toBe('132')
     expect(addInt('1', '99')).toBe('100')
+    expect(addInt('-340', '10')).toBe('-330')
+    expect(addInt('-924', '1')).toBe('-923')
   })
   test('big', () => {
     expect(addInt('111', '129', 2)).toBe('240')
@@ -30,7 +32,7 @@ describe('addInt', () => {
   })
   test('random', () => {
     const arr = []
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 100000; i++) {
       arr.push([randomInt(), randomInt()])
     }
 
@@ -41,5 +43,7 @@ describe('addInt', () => {
 })
 
 function randomInt() {
-  return Math.floor(Math.random() * 100000)
+  const isNegative = Math.random() > 0.5
+  const value = (isNegative ? -1 : 1) * Math.floor(Math.random() * 100000)
+  return value
 }

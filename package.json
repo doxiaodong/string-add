@@ -1,6 +1,6 @@
 {
   "name": "string-add",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Add int and floats for crossing Infinity in Javascript",
   "main": "bundles/add.umd.min.js",
   "module": "lib/index.js",

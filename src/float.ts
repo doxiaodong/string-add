@@ -69,15 +69,22 @@ export function addFloat(a: string, b: string) {
   // 整数和小数部分不同符号则反转小数部分
   const floatBack = (retFloatIsNegative && !retIntIsNegative) || (!retFloatIsNegative && retIntIsNegative)
 
+  // 19920122 -> 80079878
   if (floatBack) {
     const l = retFloat.length
-    let shadowRetFloat = ''
-    for (let i = 0; i < l - 1; i++) {
-      shadowRetFloat += 9 - +retFloat[i]
-    }
-    shadowRetFloat += 10 - +retFloat[l - 1]
+    if (l > 0) {
+      let shadowRetFloat = ''
+      for (let i = 0; i < l - 1; i++) {
+        shadowRetFloat += 9 - +retFloat[i]
+      }
+      shadowRetFloat += 10 - +retFloat[l - 1]
 
-    retFloat = shadowRetFloat
+      retFloat = shadowRetFloat
+    } else {
+      // 如果本身值为 0， 则反转小数的时候向整数部分 + -1
+      // 这里讲不清楚了
+      retInt = addInt(retInt, '-1')
+    }
   }
 
   if (retFloat !== '') {

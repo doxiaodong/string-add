@@ -22,6 +22,8 @@ describe('addFloat', () => {
 
     expect(addFloat('1.99', '-2.921')).toBe('-0.931')
     expect(addFloat('1.991', '-2.92')).toBe('-0.929')
+
+    expect(addFloat('1.991', '-2.991')).toBe('-1')
   })
 
   test('big than Infinity', () => {
@@ -31,7 +33,7 @@ describe('addFloat', () => {
 
   test('random', () => {
     const arr = []
-    for (let i = 0; i < 10000; i++) {
+    for (let i = 0; i < 100000; i++) {
       arr.push([randomFloat(), randomFloat()])
     }
 
@@ -44,5 +46,7 @@ describe('addFloat', () => {
 })
 
 function randomFloat() {
-  return (Math.random() * 100000).toFixed(3)
+  const isNegative = Math.random() > 0.5
+  const value = Math.random() * 100000
+  return (isNegative ? '-' : '') + value.toFixed(3)
 }

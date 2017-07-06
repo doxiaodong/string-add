@@ -46,8 +46,15 @@ export function addInt(a: string, b: string, maxLength = 15, remainZero = false)
     const shouldContinue = nextA.length > 0 || nextB.length > 0
 
     if (iab < 0) {
+      let iabString = ''
       nextAdd = -1
       iab += one
+      iabString = iab + ''
+      // 补充 -923 + 1000 = 077 被删掉的 0
+      while (iabString.length < len) {
+        iabString = '0' + iabString
+      }
+      iab = iabString as any
     }
 
     ret = iab + ret
@@ -63,18 +70,30 @@ export function addInt(a: string, b: string, maxLength = 15, remainZero = false)
 
     // 处理相加后 nextAdd 为 -1 的情况
     // 对应规则为 19920122 -> 80079878
+    // 670 -> 330
+    // 077 -> 923
     if (nextAdd === -1) {
       retIsNegative = true
 
       let checkRet = ''
       const l = ret.length
 
-      if (l > 1) {
-        for (let i = 0; i < l - 1; i++) {
+      // 移除末尾的 0 再处理
+      const retRemoveSuffixZero = ret.replace(/0+$/, '')
+      const ll = retRemoveSuffixZero.length
+
+      if (ll > 1) {
+        for (let i = 0; i < ll - 1; i++) {
           checkRet += 9 - +ret[i]
         }
       }
-      checkRet += 10 - +ret[l - 1]
+      checkRet += 10 - +retRemoveSuffixZero[ll - 1]
+
+      const zeros = l - ll
+      // 添加刚刚被移除的 0
+      for (let i = 0; i < zeros; i++) {
+        checkRet += '0'
+      }
 
       ret = checkRet
     }
